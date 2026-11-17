@@ -65,7 +65,7 @@
         {
           "command": "no-comments-please.toggle",
           "group": "navigation@1",
-          "when": "!noCommentsPlease.isPreview && resourceScheme != commentless && (isInDiffEditor || editorTextFocus)"
+          "when": "!noCommentsPlease.isPreview && resourceScheme != commentless"
         },
         {
           "command": "no-comments-please.showWithComments",
@@ -77,7 +77,7 @@
         {
           "command": "no-comments-please.toggle",
           "group": "navigation",
-          "when": "!noCommentsPlease.isPreview && resourceScheme != commentless && !isInDiffEditor && editorTextFocus"
+          "when": "!noCommentsPlease.isPreview && resourceScheme != commentless"
         },
         {
           "command": "no-comments-please.showWithComments",
@@ -108,7 +108,7 @@
         "command": "no-comments-please.toggle",
         "key": "ctrl+alt+.",
         "mac": "cmd+alt+.",
-        "when": "!noCommentsPlease.isPreview && (isInDiffEditor || editorTextFocus)"
+        "when": "!noCommentsPlease.isPreview"
       },
       {
         "command": "no-comments-please.showWithComments",
