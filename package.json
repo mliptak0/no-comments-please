@@ -1,0 +1,146 @@
+{
+  "name": "no-comments-please",
+  "displayName": "No Comments Please",
+  "description": "Preview any code file without comments — original untouched, preview has zero gaps. Like Markdown Preview but for comments.",
+  "version": "0.1.0",
+  "publisher": "no-comments-please",
+  "license": "MIT",
+  "author": "No Comments Please",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mliptak0/no-comments-please"
+  },
+  "homepage": "https://github.com/mliptak0/no-comments-please#readme",
+  "bugs": {
+    "url": "https://github.com/mliptak0/no-comments-please/issues"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "comments",
+    "preview",
+    "hide",
+    "clean"
+  ],
+  "galleryBanner": {
+    "color": "#6d5dfc",
+    "theme": "dark"
+  },
+  "extensionKind": [
+    "ui",
+    "workspace"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "icon": "icon.png",
+  "contributes": {
+    "commands": [
+      {
+        "command": "no-comments-please.toggle",
+        "title": "Toggle Comments",
+        "category": "No Comments Please",
+        "icon": {
+          "light": "resources/light/hide.svg",
+          "dark": "resources/dark/hide.svg"
+        }
+      },
+      {
+        "command": "no-comments-please.showWithComments",
+        "title": "Show Comments",
+        "category": "No Comments Please",
+        "icon": {
+          "light": "resources/light/show.svg",
+          "dark": "resources/dark/show.svg"
+        }
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "no-comments-please.toggle",
+          "group": "navigation@1",
+          "when": "!noCommentsPlease.isPreview && resourceScheme != commentless && (isInDiffEditor || editorTextFocus)"
+        },
+        {
+          "command": "no-comments-please.showWithComments",
+          "group": "navigation@1",
+          "when": "noCommentsPlease.isPreview"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "no-comments-please.toggle",
+          "group": "navigation",
+          "when": "!noCommentsPlease.isPreview && resourceScheme != commentless && !isInDiffEditor && editorTextFocus"
+        },
+        {
+          "command": "no-comments-please.showWithComments",
+          "group": "navigation",
+          "when": "noCommentsPlease.isPreview"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "no-comments-please.toggle",
+          "group": "navigation@1",
+          "when": "!noCommentsPlease.isPreview && resourceExtname =~ /\\.(js|ts|jsx|tsx|mjs|cjs|mts|cts|py|pyi|java|c|cpp|cc|cxx|h|hpp|cs|go|rs|php|rb|swift|kt|kts|dart|scala|groovy|coffee|css|scss|less|html|htm|xml|xhtml|vue|svelte|astro|hbs|sh|bash|zsh|ps1|psm1|yaml|yml|dockerfile|makefile|mk|sql|lua|r|pl|pm|hs|ex|exs|erl|clj|toml|ini|properties|bat|cmd|tex)$/i"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "no-comments-please.toggle",
+          "when": "true"
+        },
+        {
+          "command": "no-comments-please.showWithComments",
+          "when": "noCommentsPlease.isPreview"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "no-comments-please.toggle",
+        "key": "ctrl+alt+.",
+        "mac": "cmd+alt+.",
+        "when": "!noCommentsPlease.isPreview && (isInDiffEditor || editorTextFocus)"
+      },
+      {
+        "command": "no-comments-please.showWithComments",
+        "key": "ctrl+alt+.",
+        "mac": "cmd+alt+.",
+        "when": "noCommentsPlease.isPreview"
+      }
+    ],
+    "configuration": {
+      "title": "No Comments Please",
+      "properties": {
+        "noCommentsPlease.openPreviewInline": {
+          "type": "boolean",
+          "default": false,
+          "description": "Open preview next to the file tab in the same row (same editor group). When disabled (default), preview opens in a separate editor group to the side."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "tsc --noEmit"
+  },
+  "overrides": {
+    "minimatch": "^11.0.9"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^4.1.1",
+    "typescript": "^5.4.5"
+  }
+}
